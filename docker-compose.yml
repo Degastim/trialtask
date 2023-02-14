@@ -1,0 +1,18 @@
+version: "2"
+
+services:
+  kameleoon-service:
+    build: ./trialtask
+    restart: on-failure
+    ports:
+      - "8081:8081"
+    environment:
+      - SERVER_PORT=8081
+      - API_VERSION=v1
+      - DATABASE_URL=jdbc:h2:mem:testdb
+      - DATABASE_USERNAME=sa
+      - DATABASE_PASSWORD=password
+      - DEFAULT_PAGE_SIZE=3
+      - DEFAULT_SORT_NUMBER=3
+    volumes:
+      - ./trialtask-init:/docker-entrypoint-initdb.d
